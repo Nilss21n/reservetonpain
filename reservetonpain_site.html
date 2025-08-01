@@ -2,107 +2,175 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reserve Ton Pain</title>
+  <title>Réserve ton pain</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 1rem;
-      max-width: 800px;
-      margin-inline: auto;
+      font-family: sans-serif;
+      margin: 40px;
+      background-color: #fff8f0;
+      color: #333;
+    }
+    h1 {
+      color: #d2691e;
     }
     h2 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.2rem;
-    }
-    label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-    input[type="number"] {
-      width: 60px;
+      color: #a0522d;
+      margin-top: 30px;
     }
     .section {
-      margin-top: 1.5rem;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .footer {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ccc;
-      font-size: 0.9rem;
-      color: #555;
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+    input[type="number"], input[type="text"], input[type="email"], input[type="time"] {
+      width: 200px;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
     }
     button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #333;
+      background-color: #ff7f50;
       color: white;
       border: none;
+      padding: 10px 20px;
+      font-size: 16px;
       cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #e65c2f;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <h1>Réserve ton pain</h1>
-  <form action="https://formspree.io/f/yourFormID" method="POST">
+
+  <form id="commandeForm" action="https://formspree.io/f/mldearrq" method="POST">
     <div class="section">
-      <h2>Informations</h2>
-      <label>Nom: <input type="text" name="nom" required></label>
-      <label>Email: <input type="email" name="email" required></label>
-      <label>Heure de retrait: <input type="time" name="heure" required></label>
+      <label>Votre prénom :</label>
+      <input type="text" name="prenom" id="prenom" required>
     </div>
 
     <div class="section">
       <h2>Pain</h2>
-      <label>Tradition (1,20€) <input type="number" name="tradition" min="0" value="0"></label>
-      <label>Baguette (1,00€) <input type="number" name="baguette" min="0" value="0"></label>
-      <label>Pain complet (1,50€) <input type="number" name="pain_complet" min="0" value="0"></label>
+      <label>Tradition (1,20 €) : <input type="number" name="tradition" class="produit" data-prix="1.20" min="0" value="0"></label>
+      <label>Baguette (1,10 €) : <input type="number" name="baguette" class="produit" data-prix="1.10" min="0" value="0"></label>
+      <label>Pain complet (1,50 €) : <input type="number" name="paincomplet" class="produit" data-prix="1.50" min="0" value="0"></label>
     </div>
 
     <div class="section">
       <h2>Viennoiseries</h2>
-      <label>Pain au chocolat (1,20€) <input type="number" name="pain_choco" min="0" value="0"></label>
-      <label>Croissant (1,10€) <input type="number" name="croissant" min="0" value="0"></label>
-      <label>Viennoise chocolat (1,30€) <input type="number" name="viennoise" min="0" value="0"></label>
-      <label>Brioche aux pépites (1,50€) <input type="number" name="brioche" min="0" value="0"></label>
+      <label>Croissant (1,00 €) : <input type="number" name="croissant" class="produit" data-prix="1.00" min="0" value="0"></label>
+      <label>Pain au chocolat (1,10 €) : <input type="number" name="painchoco" class="produit" data-prix="1.10" min="0" value="0"></label>
+      <label>Viennoise chocolat (1,20 €) : <input type="number" name="viennoise" class="produit" data-prix="1.20" min="0" value="0"></label>
+      <label>Brioche pépites (1,30 €) : <input type="number" name="brioche" class="produit" data-prix="1.30" min="0" value="0"></label>
     </div>
 
     <div class="section">
       <h2>Snacks</h2>
-      <label>Sandwich (4,50€) <input type="number" name="sandwich" min="0" value="0"></label>
-      <label>Quiche (4,00€) <input type="number" name="quiche" min="0" value="0"></label>
-      <label>Wrap (4,20€) <input type="number" name="wrap" min="0" value="0"></label>
+      <label>Sandwich (3,50 €) : <input type="number" name="sandwich" class="produit" data-prix="3.50" min="0" value="0"></label>
+      <label>Quiche (3,00 €) : <input type="number" name="quiche" class="produit" data-prix="3.00" min="0" value="0"></label>
+      <label>Wrap (3,20 €) : <input type="number" name="wrap" class="produit" data-prix="3.20" min="0" value="0"></label>
     </div>
 
     <div class="section">
-      <h2>Pâtisseries</h2>
-      <label>Flan (2,80€) <input type="number" name="flan" min="0" value="0"></label>
-      <label>Tarte citron (3,00€) <input type="number" name="tarte_citron" min="0" value="0"></label>
+      <h2>Pâtisserie</h2>
+      <label>Tarte citron (2,50 €) : <input type="number" name="tarte" class="produit" data-prix="2.50" min="0" value="0"></label>
+      <label>Flan (2,20 €) : <input type="number" name="flan" class="produit" data-prix="2.20" min="0" value="0"></label>
     </div>
 
     <div class="section">
       <h2>Boissons</h2>
-      <label>Coca (1,80€) <input type="number" name="coca" min="0" value="0"></label>
-      <label>Perrier (1,80€) <input type="number" name="perrier" min="0" value="0"></label>
+      <label>Coca (1,50 €) : <input type="number" name="coca" class="produit" data-prix="1.50" min="0" value="0"></label>
+      <label>Perrier (1,50 €) : <input type="number" name="perrier" class="produit" data-prix="1.50" min="0" value="0"></label>
     </div>
 
     <div class="section">
       <h2>Friandises</h2>
-      <label>Sucette (0,50€) <input type="number" name="sucette" min="0" value="0"></label>
-      <label>Carambar (0,30€) <input type="number" name="carambar" min="0" value="0"></label>
-      <label>Chewing-gum (0,40€) <input type="number" name="chewing_gum" min="0" value="0"></label>
+      <label>Carambar (0,10 €) : <input type="number" name="carambar" class="produit" data-prix="0.10" min="0" value="0"></label>
+      <label>Sucette (0,30 €) : <input type="number" name="sucette" class="produit" data-prix="0.30" min="0" value="0"></label>
+      <label>Chewing-gum (0,20 €) : <input type="number" name="chewinggum" class="produit" data-prix="0.20" min="0" value="0"></label>
     </div>
 
-    <button type="submit">Envoyer la commande</button>
+    <div class="section">
+      <label>Heure de retrait :</label>
+      <input type="time" name="retrait" required>
+    </div>
+
+    <div class="section">
+      <label>Votre email :</label>
+      <input type="email" name="email" required>
+    </div>
+
+    <input type="hidden" name="message" id="message">
+
+    <div class="section">
+      <button type="submit">Valider la commande</button>
+    </div>
   </form>
 
-  <div class="footer">
-    <p>Boulangerie La Bonne Mie</p>
-    <p>123 Rue de la Baguette, 75010 Paris</p>
-    <p>Horaires : Lundi au Samedi, 7h00 - 20h00</p>
-    <p>Téléphone : 01 23 45 67 89</p>
-  </div>
+  <div class="section total" id="totalDisplay">Total : 0.00 €</div>
+
+  <footer>
+    <hr>
+    <p>Boulangerie Du Bon Pain, 123 Rue du Croissant, 75000 Paris</p>
+    <p>Ouvert du lundi au samedi de 7h à 19h30</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('commandeForm');
+    const produits = document.querySelectorAll('.produit');
+    const totalDisplay = document.getElementById('totalDisplay');
+    const messageInput = document.getElementById('message');
+
+    function updateTotalEtMessage() {
+      let total = 0;
+      let items = [];
+
+      produits.forEach(input => {
+        const qte = parseInt(input.value);
+        const prix = parseFloat(input.dataset.prix);
+        const nom = input.name;
+
+        if (qte > 0) {
+          total += qte * prix;
+          items.push(`${qte} ${nom}${qte > 1 ? 's' : ''}`);
+        }
+      });
+
+      totalDisplay.textContent = `Total : ${total.toFixed(2)} €`;
+
+      const prenom = document.getElementById('prenom').value || 'client';
+      let msg = `Bonjour ${prenom}, vous venez de réserver `;
+      msg += items.join(', ');
+      msg += `. Cela vous fera un total de : ${total.toFixed(2)} €.`;
+
+      messageInput.value = msg;
+    }
+
+    produits.forEach(input => {
+      input.addEventListener('input', updateTotalEtMessage);
+    });
+    document.getElementById('prenom').addEventListener('input', updateTotalEtMessage);
+
+    form.addEventListener('submit', () => {
+      updateTotalEtMessage();
+    });
+  </script>
 </body>
 </html>
