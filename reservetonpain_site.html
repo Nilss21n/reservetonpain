@@ -1,176 +1,128 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Réserve ton pain</title>
   <style>
     body {
-      font-family: sans-serif;
-      margin: 40px;
-      background-color: #fff8f0;
+      font-family: Arial, sans-serif;
+      background: #f9f5f1;
+      max-width: 600px;
+      margin: auto;
+      padding: 1rem;
       color: #333;
     }
     h1 {
-      color: #d2691e;
-    }
-    h2 {
-      color: #a0522d;
-      margin-top: 30px;
-    }
-    .section {
-      margin-bottom: 20px;
-      padding: 15px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      color: #8b4513;
     }
     label {
       display: block;
-      margin: 5px 0;
-    }
-    input[type="number"], input[type="text"], input[type="email"], input[type="time"] {
-      width: 200px;
-      padding: 5px;
-      margin-top: 5px;
-    }
-    .total {
+      margin: 0.8rem 0 0.3rem;
       font-weight: bold;
-      margin-top: 20px;
-      font-size: 18px;
+    }
+    select, input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="time"] {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
     button {
-      background-color: #ff7f50;
+      margin-top: 1rem;
+      background: #8b4513;
       color: white;
+      padding: 0.7rem;
       border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
       border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1rem;
     }
     button:hover {
-      background-color: #e65c2f;
-    }
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      color: #666;
+      background: #a05a26;
     }
   </style>
 </head>
 <body>
-  <h1>Réserve ton pain</h1>
 
-  <form id="commandeForm" action="https://formspree.io/f/mldearrq" method="POST">
-    <div class="section">
-      <label>Votre prénom :</label>
-      <input type="text" name="prenom" id="prenom" required>
-    </div>
+<h1>Réserve ton pain</h1>
 
-    <div class="section">
-      <h2>Pain</h2>
-      <label>Tradition (1,20 €) : <input type="number" name="tradition" class="produit" data-prix="1.20" min="0" value="0"></label>
-      <label>Baguette (1,10 €) : <input type="number" name="baguette" class="produit" data-prix="1.10" min="0" value="0"></label>
-      <label>Pain complet (1,50 €) : <input type="number" name="paincomplet" class="produit" data-prix="1.50" min="0" value="0"></label>
-    </div>
+<form id="orderForm" action="https://formspree.io/f/TON_ID_FORM" method="POST">
 
-    <div class="section">
-      <h2>Viennoiseries</h2>
-      <label>Croissant (1,00 €) : <input type="number" name="croissant" class="produit" data-prix="1.00" min="0" value="0"></label>
-      <label>Pain au chocolat (1,10 €) : <input type="number" name="painchoco" class="produit" data-prix="1.10" min="0" value="0"></label>
-      <label>Viennoise chocolat (1,20 €) : <input type="number" name="viennoise" class="produit" data-prix="1.20" min="0" value="0"></label>
-      <label>Brioche pépites (1,30 €) : <input type="number" name="brioche" class="produit" data-prix="1.30" min="0" value="0"></label>
-    </div>
+  <label for="name">Nom complet *</label>
+  <input type="text" id="name" name="Nom" required />
 
-    <div class="section">
-      <h2>Snacks</h2>
-      <label>Sandwich (3,50 €) : <input type="number" name="sandwich" class="produit" data-prix="3.50" min="0" value="0"></label>
-      <label>Quiche (3,00 €) : <input type="number" name="quiche" class="produit" data-prix="3.00" min="0" value="0"></label>
-      <label>Wrap (3,20 €) : <input type="number" name="wrap" class="produit" data-prix="3.20" min="0" value="0"></label>
-    </div>
+  <label for="email">Email *</label>
+  <input type="email" id="email" name="Email" required />
 
-    <div class="section">
-      <h2>Pâtisserie</h2>
-      <label>Tarte citron (2,50 €) : <input type="number" name="tarte" class="produit" data-prix="2.50" min="0" value="0"></label>
-      <label>Flan (2,20 €) : <input type="number" name="flan" class="produit" data-prix="2.20" min="0" value="0"></label>
-    </div>
+  <label for="phone">Téléphone *</label>
+  <input type="tel" id="phone" name="Téléphone" required pattern="^(\+33|0)[1-9](\d{2}){4}$" placeholder="Ex: 0612345678 ou +33612345678" />
 
-    <div class="section">
-      <h2>Boissons</h2>
-      <label>Coca (1,50 €) : <input type="number" name="coca" class="produit" data-prix="1.50" min="0" value="0"></label>
-      <label>Perrier (1,50 €) : <input type="number" name="perrier" class="produit" data-prix="1.50" min="0" value="0"></label>
-    </div>
+  <label for="pickupDate">Date de retrait *</label>
+  <input type="date" id="pickupDate" name="Date_retrait" required min="" />
 
-    <div class="section">
-      <h2>Friandises</h2>
-      <label>Carambar (0,10 €) : <input type="number" name="carambar" class="produit" data-prix="0.10" min="0" value="0"></label>
-      <label>Sucette (0,30 €) : <input type="number" name="sucette" class="produit" data-prix="0.30" min="0" value="0"></label>
-      <label>Chewing-gum (0,20 €) : <input type="number" name="chewinggum" class="produit" data-prix="0.20" min="0" value="0"></label>
-    </div>
+  <label for="pickupTime">Heure de retrait *</label>
+  <input type="time" id="pickupTime" name="Heure_retrait" required />
 
-    <div class="section">
-      <label>Heure de retrait :</label>
-      <input type="time" name="retrait" required>
-    </div>
+  <label for="viennoiseries">Viennoiseries</label>
+  <select id="viennoiseries" name="Viennoiseries" multiple size="4">
+    <option value="Pain aux chocolats - 1.50€">Pain aux chocolats - 1.50€</option>
+    <option value="Croissant - 1.30€">Croissant - 1.30€</option>
+    <option value="Viennoise chocolat - 1.70€">Viennoise chocolat - 1.70€</option>
+    <option value="Brioche aux pépites de chocolat - 1.80€">Brioche aux pépites de chocolat - 1.80€</option>
+  </select>
 
-    <div class="section">
-      <label>Votre email :</label>
-      <input type="email" name="email" required>
-    </div>
+  <label for="snacks">Snacks</label>
+  <select id="snacks" name="Snacks" multiple size="3">
+    <option value="Sandwich - 4.50€">Sandwich - 4.50€</option>
+    <option value="Quiche - 3.90€">Quiche - 3.90€</option>
+    <option value="Wrap - 4.20€">Wrap - 4.20€</option>
+  </select>
 
-    <input type="hidden" name="message" id="message">
+  <label for="patisseries">Pâtisseries</label>
+  <select id="patisseries" name="Patisseries" multiple size="3">
+    <option value="Flan - 2.50€">Flan - 2.50€</option>
+    <option value="Tarte au citron - 3.00€">Tarte au citron - 3.00€</option>
+    <option value="Éclair au chocolat - 3.20€">Éclair au chocolat - 3.20€</option>
+  </select>
 
-    <div class="section">
-      <button type="submit">Valider la commande</button>
-    </div>
-  </form>
+  <label for="boissons">Boissons</label>
+  <select id="boissons" name="Boissons" multiple size="3">
+    <option value="Coca - 1.80€">Coca - 1.80€</option>
+    <option value="Perrier - 1.50€">Perrier - 1.50€</option>
+    <option value="Jus d'orange - 2.00€">Jus d'orange - 2.00€</option>
+  </select>
 
-  <div class="section total" id="totalDisplay">Total : 0.00 €</div>
+  <label for="friandises">Friandises</label>
+  <select id="friandises" name="Friandises" multiple size="3">
+    <option value="Sucette - 0.80€">Sucette - 0.80€</option>
+    <option value="Carambar - 0.60€">Carambar - 0.60€</option>
+    <option value="Chewing-gum - 0.50€">Chewing-gum - 0.50€</option>
+  </select>
 
-  <footer>
-    <hr>
-    <p>Boulangerie Du Bon Pain, 123 Rue du Croissant, 75000 Paris</p>
-    <p>Ouvert du lundi au samedi de 7h à 19h30</p>
-  </footer>
+  <button type="submit">Envoyer ma commande</button>
 
-  <script>
-    const form = document.getElementById('commandeForm');
-    const produits = document.querySelectorAll('.produit');
-    const totalDisplay = document.getElementById('totalDisplay');
-    const messageInput = document.getElementById('message');
+</form>
 
-    function updateTotalEtMessage() {
-      let total = 0;
-      let items = [];
+<script>
+  // Définir la date minimum d'aujourd'hui pour le champ date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('pickupDate').setAttribute('min', today);
 
-      produits.forEach(input => {
-        const qte = parseInt(input.value);
-        const prix = parseFloat(input.dataset.prix);
-        const nom = input.name;
+  // Confirmation pop-up après soumission
+  const form = document.getElementById('orderForm');
+  form.addEventListener('submit', function(event) {
+    // Optionnel : tu peux empêcher la soumission si tu veux faire plus de validations
+    // event.preventDefault();
 
-        if (qte > 0) {
-          total += qte * prix;
-          items.push(`${qte} ${nom}${qte > 1 ? 's' : ''}`);
-        }
-      });
+    alert("Votre commande a été enregistrée !\nVous pouvez retrouver le détail dans votre email.");
 
-      totalDisplay.textContent = `Total : ${total.toFixed(2)} €`;
+    // La soumission continue normalement pour envoyer vers Formspree
+  });
+</script>
 
-      const prenom = document.getElementById('prenom').value || 'client';
-      let msg = `Bonjour ${prenom}, vous venez de réserver `;
-      msg += items.join(', ');
-      msg += `. Cela vous fera un total de : ${total.toFixed(2)} €.`;
-
-      messageInput.value = msg;
-    }
-
-    produits.forEach(input => {
-      input.addEventListener('input', updateTotalEtMessage);
-    });
-    document.getElementById('prenom').addEventListener('input', updateTotalEtMessage);
-
-    form.addEventListener('submit', () => {
-      updateTotalEtMessage();
-    });
-  </script>
 </body>
 </html>
