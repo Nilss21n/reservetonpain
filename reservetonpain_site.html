@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Réserve ton pain</title>
   <style>
     body {
@@ -27,11 +27,21 @@
     label {
       display: block;
       margin: 5px 0;
+      cursor: pointer;
     }
     input[type="number"], input[type="text"], input[type="email"], input[type="time"] {
       width: 200px;
       padding: 5px;
       margin-top: 5px;
+      font-size: 1em;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield; /* retire les flèches sur Firefox */
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
     }
     .total {
       font-weight: bold;
@@ -46,78 +56,98 @@
       font-size: 16px;
       cursor: pointer;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
-    button:hover {
+    button:hover, button:focus {
       background-color: #e65c2f;
+      outline: none;
     }
     footer {
       margin-top: 50px;
       text-align: center;
       color: #666;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
   <h1>Réserve ton pain</h1>
 
-  <form id="commandeForm" action="https://formspree.io/f/mldearrq" method="POST">
+  <form id="commandeForm" action="https://formspree.io/f/mldearrq" method="POST" aria-label="Formulaire de réservation de pain">
     <div class="section">
-      <label>Votre prénom :</label>
-      <input type="text" name="prenom" id="prenom" required>
+      <label for="prenom">Votre prénom :</label>
+      <input type="text" name="prenom" id="prenom" required aria-required="true" autocomplete="given-name" />
     </div>
 
     <div class="section">
       <h2>Pain</h2>
-      <label>Tradition (1,20 €) : <input type="number" name="tradition" class="produit" data-prix="1.20" min="0" value="0"></label>
-      <label>Baguette (1,10 €) : <input type="number" name="baguette" class="produit" data-prix="1.10" min="0" value="0"></label>
-      <label>Pain complet (1,50 €) : <input type="number" name="paincomplet" class="produit" data-prix="1.50" min="0" value="0"></label>
+      <label for="tradition">Tradition (1,20 €) :</label>
+      <input type="number" name="tradition" id="tradition" class="produit" data-prix="1.20" min="0" step="1" value="0" />
+      <label for="baguette">Baguette (1,10 €) :</label>
+      <input type="number" name="baguette" id="baguette" class="produit" data-prix="1.10" min="0" step="1" value="0" />
+      <label for="paincomplet">Pain complet (1,50 €) :</label>
+      <input type="number" name="paincomplet" id="paincomplet" class="produit" data-prix="1.50" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
       <h2>Viennoiseries</h2>
-      <label>Croissant (1,00 €) : <input type="number" name="croissant" class="produit" data-prix="1.00" min="0" value="0"></label>
-      <label>Pain au chocolat (1,10 €) : <input type="number" name="painchoco" class="produit" data-prix="1.10" min="0" value="0"></label>
-      <label>Viennoise chocolat (1,20 €) : <input type="number" name="viennoise" class="produit" data-prix="1.20" min="0" value="0"></label>
-      <label>Brioche pépites (1,30 €) : <input type="number" name="brioche" class="produit" data-prix="1.30" min="0" value="0"></label>
+      <label for="croissant">Croissant (1,00 €) :</label>
+      <input type="number" name="croissant" id="croissant" class="produit" data-prix="1.00" min="0" step="1" value="0" />
+      <label for="painchoco">Pain au chocolat (1,10 €) :</label>
+      <input type="number" name="painchoco" id="painchoco" class="produit" data-prix="1.10" min="0" step="1" value="0" />
+      <label for="viennoise">Viennoise chocolat (1,20 €) :</label>
+      <input type="number" name="viennoise" id="viennoise" class="produit" data-prix="1.20" min="0" step="1" value="0" />
+      <label for="brioche">Brioche pépites (1,30 €) :</label>
+      <input type="number" name="brioche" id="brioche" class="produit" data-prix="1.30" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
       <h2>Snacks</h2>
-      <label>Sandwich (3,50 €) : <input type="number" name="sandwich" class="produit" data-prix="3.50" min="0" value="0"></label>
-      <label>Quiche (3,00 €) : <input type="number" name="quiche" class="produit" data-prix="3.00" min="0" value="0"></label>
-      <label>Wrap (3,20 €) : <input type="number" name="wrap" class="produit" data-prix="3.20" min="0" value="0"></label>
+      <label for="sandwich">Sandwich (3,50 €) :</label>
+      <input type="number" name="sandwich" id="sandwich" class="produit" data-prix="3.50" min="0" step="1" value="0" />
+      <label for="quiche">Quiche (3,00 €) :</label>
+      <input type="number" name="quiche" id="quiche" class="produit" data-prix="3.00" min="0" step="1" value="0" />
+      <label for="wrap">Wrap (3,20 €) :</label>
+      <input type="number" name="wrap" id="wrap" class="produit" data-prix="3.20" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
       <h2>Pâtisserie</h2>
-      <label>Tarte citron (2,50 €) : <input type="number" name="tarte" class="produit" data-prix="2.50" min="0" value="0"></label>
-      <label>Flan (2,20 €) : <input type="number" name="flan" class="produit" data-prix="2.20" min="0" value="0"></label>
+      <label for="tarte">Tarte citron (2,50 €) :</label>
+      <input type="number" name="tarte" id="tarte" class="produit" data-prix="2.50" min="0" step="1" value="0" />
+      <label for="flan">Flan (2,20 €) :</label>
+      <input type="number" name="flan" id="flan" class="produit" data-prix="2.20" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
       <h2>Boissons</h2>
-      <label>Coca (1,50 €) : <input type="number" name="coca" class="produit" data-prix="1.50" min="0" value="0"></label>
-      <label>Perrier (1,50 €) : <input type="number" name="perrier" class="produit" data-prix="1.50" min="0" value="0"></label>
+      <label for="coca">Coca (1,50 €) :</label>
+      <input type="number" name="coca" id="coca" class="produit" data-prix="1.50" min="0" step="1" value="0" />
+      <label for="perrier">Perrier (1,50 €) :</label>
+      <input type="number" name="perrier" id="perrier" class="produit" data-prix="1.50" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
       <h2>Friandises</h2>
-      <label>Carambar (0,10 €) : <input type="number" name="carambar" class="produit" data-prix="0.10" min="0" value="0"></label>
-      <label>Sucette (0,30 €) : <input type="number" name="sucette" class="produit" data-prix="0.30" min="0" value="0"></label>
-      <label>Chewing-gum (0,20 €) : <input type="number" name="chewinggum" class="produit" data-prix="0.20" min="0" value="0"></label>
+      <label for="carambar">Carambar (0,10 €) :</label>
+      <input type="number" name="carambar" id="carambar" class="produit" data-prix="0.10" min="0" step="1" value="0" />
+      <label for="sucette">Sucette (0,30 €) :</label>
+      <input type="number" name="sucette" id="sucette" class="produit" data-prix="0.30" min="0" step="1" value="0" />
+      <label for="chewinggum">Chewing-gum (0,20 €) :</label>
+      <input type="number" name="chewinggum" id="chewinggum" class="produit" data-prix="0.20" min="0" step="1" value="0" />
     </div>
 
     <div class="section">
-      <label>Heure de retrait :</label>
-      <input type="time" name="retrait" required>
+      <label for="retrait">Heure de retrait :</label>
+      <input type="time" name="retrait" id="retrait" required aria-required="true" />
     </div>
 
     <div class="section">
-      <label>Votre email :</label>
-      <input type="email" name="email" required>
+      <label for="email">Votre email :</label>
+      <input type="email" name="email" id="email" required aria-required="true" autocomplete="email" />
     </div>
 
-    <input type="hidden" name="message" id="message">
+    <input type="hidden" name="message" id="message" />
 
     <div class="section">
       <button type="submit">Valider la commande</button>
@@ -127,7 +157,7 @@
   <div class="section total" id="totalDisplay">Total : 0.00 €</div>
 
   <footer>
-    <hr>
+    <hr />
     <p>Boulangerie Du Bon Pain, 123 Rue du Croissant, 75000 Paris</p>
     <p>Ouvert du lundi au samedi de 7h à 19h30</p>
   </footer>
@@ -137,39 +167,93 @@
     const produits = document.querySelectorAll('.produit');
     const totalDisplay = document.getElementById('totalDisplay');
     const messageInput = document.getElementById('message');
+    const prenomInput = document.getElementById('prenom');
 
-    function updateTotalEtMessage() {
+    // Fonction pour pluraliser proprement
+    function pluralize(n, singular, plural = null) {
+      if (plural === null) plural = singular + 's';
+      return n > 1 ? plural : singular;
+    }
+
+    // Calcule et affiche le total
+    function updateTotalAndMessage() {
       let total = 0;
-      let items = [];
+      let lignesCommande = [];
+
+      const prenom = prenomInput.value.trim() || "Client";
 
       produits.forEach(input => {
-        const qte = parseInt(input.value);
-        const prix = parseFloat(input.dataset.prix);
-        const nom = input.name;
-
+        let qte = parseInt(input.value);
+        if (isNaN(qte) || qte < 0) {
+          qte = 0;
+          input.value = 0;
+        }
         if (qte > 0) {
-          total += qte * prix;
-          items.push(`${qte} ${nom}${qte > 1 ? 's' : ''}`);
+          const prix = parseFloat(input.dataset.prix);
+          total += prix * qte;
+
+          // Récupère le label lié au input (accessible via for)
+          const label = document.querySelector(`label[for="${input.id}"]`);
+          let nomProduit = label ? label.textContent.replace(/\(\d+,\d+ €\)/, '').trim() : input.name;
+
+          lignesCommande.push(`${qte} ${pluralize(qte, nomProduit)}`);
         }
       });
 
       totalDisplay.textContent = `Total : ${total.toFixed(2)} €`;
 
-      const prenom = document.getElementById('prenom').value || 'client';
-      let msg = `Bonjour ${prenom}, vous venez de réserver `;
-      msg += items.join(', ');
-      msg += `. Cela vous fera un total de : ${total.toFixed(2)} €.`;
+      let message = `Commande de ${prenom} :\n`;
+      if (lignesCommande.length === 0) {
+        message += "Aucun produit commandé.\n";
+      } else {
+        message += lignesCommande.join(', ') + '.\n';
+      }
 
-      messageInput.value = msg;
+      const heureRetrait = form.retrait.value;
+      if (heureRetrait) {
+        message += `Heure de retrait : ${heureRetrait}.\n`;
+      }
+      const email = form.email.value.trim();
+      if (email) {
+        message += `Email : ${email}.\n`;
+      }
+
+      messageInput.value = message;
     }
 
+    // Événements de mise à jour
     produits.forEach(input => {
-      input.addEventListener('input', updateTotalEtMessage);
+      input.addEventListener('input', updateTotalAndMessage);
     });
-    document.getElementById('prenom').addEventListener('input', updateTotalEtMessage);
+    prenomInput.addEventListener('input', updateTotalAndMessage);
+    form.retrait.addEventListener('input', updateTotalAndMessage);
+    form.email.addEventListener('input', updateTotalAndMessage);
 
-    form.addEventListener('submit', () => {
-      updateTotalEtMessage();
+    // Initialiser au chargement
+    updateTotalAndMessage();
+
+    // Gestion de la soumission
+    form.addEventListener('submit', function(e) {
+      // event.preventDefault(); // Décommenter si tu veux tester sans envoyer
+
+      // Vérifier qu'au moins un produit est commandé
+      let qteTotale = 0;
+      produits.forEach(input => {
+        qteTotale += parseInt(input.value) || 0;
+      });
+      if (qteTotale === 0) {
+        alert("Veuillez sélectionner au moins un produit.");
+        e.preventDefault();
+        return false;
+      }
+
+      // Optionnel : afficher le message avant envoi
+      // alert("Commande envoyée :\n" + messageInput.value);
+
+      // Le formulaire va être envoyé à Formspree
+
+      // Après envoi, reset si tu veux (ici avec un timeout simulé)
+      // setTimeout(() => form.reset(), 1000);
     });
   </script>
 </body>
