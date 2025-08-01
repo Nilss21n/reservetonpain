@@ -65,9 +65,9 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "TA_CLÉ_API",
-      authDomain: "TON-PROJET.firebaseapp.com",
-      projectId: "TON-PROJET",
+      apiKey: "AIzaSyCVkVxiGQdz5xxlTbZIO_PhEPKY8tSTfYU",
+      authDomain: "reservetonpain.firebaseapp.com",
+      projectId: "reservetonpain",
     };
 
     firebase.initializeApp(firebaseConfig);
