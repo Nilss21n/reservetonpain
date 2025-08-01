@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Ton Pain</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 1rem;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.2rem;
+    }
+    label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+    .section {
+      margin-top: 1.5rem;
+    }
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ccc;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Réserve ton pain</h1>
+  <form action="https://formspree.io/f/yourFormID" method="POST">
+    <div class="section">
+      <h2>Informations</h2>
+      <label>Nom: <input type="text" name="nom" required></label>
+      <label>Email: <input type="email" name="email" required></label>
+      <label>Heure de retrait: <input type="time" name="heure" required></label>
+    </div>
+
+    <div class="section">
+      <h2>Pain</h2>
+      <label>Tradition (1,20€) <input type="number" name="tradition" min="0" value="0"></label>
+      <label>Baguette (1,00€) <input type="number" name="baguette" min="0" value="0"></label>
+      <label>Pain complet (1,50€) <input type="number" name="pain_complet" min="0" value="0"></label>
+    </div>
+
+    <div class="section">
+      <h2>Viennoiseries</h2>
+      <label>Pain au chocolat (1,20€) <input type="number" name="pain_choco" min="0" value="0"></label>
+      <label>Croissant (1,10€) <input type="number" name="croissant" min="0" value="0"></label>
+      <label>Viennoise chocolat (1,30€) <input type="number" name="viennoise" min="0" value="0"></label>
+      <label>Brioche aux pépites (1,50€) <input type="number" name="brioche" min="0" value="0"></label>
+    </div>
+
+    <div class="section">
+      <h2>Snacks</h2>
+      <label>Sandwich (4,50€) <input type="number" name="sandwich" min="0" value="0"></label>
+      <label>Quiche (4,00€) <input type="number" name="quiche" min="0" value="0"></label>
+      <label>Wrap (4,20€) <input type="number" name="wrap" min="0" value="0"></label>
+    </div>
+
+    <div class="section">
+      <h2>Pâtisseries</h2>
+      <label>Flan (2,80€) <input type="number" name="flan" min="0" value="0"></label>
+      <label>Tarte citron (3,00€) <input type="number" name="tarte_citron" min="0" value="0"></label>
+    </div>
+
+    <div class="section">
+      <h2>Boissons</h2>
+      <label>Coca (1,80€) <input type="number" name="coca" min="0" value="0"></label>
+      <label>Perrier (1,80€) <input type="number" name="perrier" min="0" value="0"></label>
+    </div>
+
+    <div class="section">
+      <h2>Friandises</h2>
+      <label>Sucette (0,50€) <input type="number" name="sucette" min="0" value="0"></label>
+      <label>Carambar (0,30€) <input type="number" name="carambar" min="0" value="0"></label>
+      <label>Chewing-gum (0,40€) <input type="number" name="chewing_gum" min="0" value="0"></label>
+    </div>
+
+    <button type="submit">Envoyer la commande</button>
+  </form>
+
+  <div class="footer">
+    <p>Boulangerie La Bonne Mie</p>
+    <p>123 Rue de la Baguette, 75010 Paris</p>
+    <p>Horaires : Lundi au Samedi, 7h00 - 20h00</p>
+    <p>Téléphone : 01 23 45 67 89</p>
+  </div>
+</body>
+</html>
